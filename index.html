@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人剪辑教学</title>
+    <!-- 引入字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 引入图标库 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- 引入Swiper轮播 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-brand">小坏吖 | 剪辑教学</div>
+        <div class="nav-menu">
+            <a href="#works">作品集</a>
+            <a href="#contact">联系我</a>
+            <a href="#about">个人简介</a>
+            <a href="#chat">需求帮助</a>
+        </div>
+        <div class="nav-actions">
+            <button id="themeToggle" class="theme-toggle">
+                <i class="bi bi-moon-fill"></i>
+            </button>
+            <div class="lang-switcher">
+                <button id="langToggle" class="lang-toggle">
+                    <span class="current-lang">中文</span>
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="lang-dropdown">
+                    <a href="#" data-lang="zh" class="active">中文</a>
+                    <a href="#" data-lang="en">English</a>
+                    <a href="#" data-lang="fr">Français</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 轮播区域 -->
+    <section class="hero-section">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <h1>视频剪辑教学 2024</h1>
+                        <p>专业视频制作指导</p>
+                    </div>
+                    <img src="https://images.pexels.com/photos/2873486/pexels-photo-2873486.jpeg" alt="视频剪辑工作台">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </section>
+
+    <!-- 作品集区域 -->
+    <section id="works" class="works-section">
+        <h2 class="section-title">作品集</h2>
+        <div class="works-filter">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="video">视频</button>
+            <button class="filter-btn" data-filter="motion">动画</button>
+            <button class="filter-btn" data-filter="effects">特效</button>
+        </div>
+        <div class="works-grid">
+            <!-- 视频作品 -->
+            <div class="work-item video" onclick="openPreview('video1')">
+                <img src="https://images.pexels.com/photos/2510428/pexels-photo-2510428.jpeg" alt="商业宣传片">
+                <div class="work-info">
+                    <h3>商业宣传片</h3>
+                    <p>品牌形象展示</p>
+                </div>
+            </div>
+            <div class="work-item video" onclick="openPreview('video2')">
+                <img src="https://images.pexels.com/photos/3379934/pexels-photo-3379934.jpeg" alt="旅行视频">
+                <div class="work-info">
+                    <h3>旅行视频</h3>
+                    <p>风光人文记录</p>
+                </div>
+            </div>
+            <!-- 动画作品 -->
+            <div class="work-item motion" onclick="openPreview('motion1')">
+                <img src="https://images.pexels.com/photos/5473955/pexels-photo-5473955.jpeg" alt="MG动画">
+                <div class="work-info">
+                    <h3>MG动画</h3>
+                    <p>创意动态图形</p>
+                </div>
+            </div>
+            <div class="work-item motion" onclick="openPreview('motion2')">
+                <img src="https://images.pexels.com/photos/5473960/pexels-photo-5473960.jpeg" alt="角色动画">
+                <div class="work-info">
+                    <h3>角色动画</h3>
+                    <p>生动角色演绎</p>
+                </div>
+            </div>
+            <!-- 特效作品 -->
+            <div class="work-item effects" onclick="openPreview('effects1')">
+                <img src="https://images.pexels.com/photos/5473302/pexels-photo-5473302.jpeg" alt="视觉特效">
+                <div class="work-info">
+                    <h3>视觉特效</h3>
+                    <p>震撼视觉体验</p>
+                </div>
+            </div>
+            <div class="work-item effects" onclick="openPreview('effects2')">
+                <img src="https://images.pexels.com/photos/5473947/pexels-photo-5473947.jpeg" alt="转场效果">
+                <div class="work-info">
+                    <h3>转场效果</h3>
+                    <p>流畅画面过渡</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品预览模态框 -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="preview-content">
+                <div class="preview-media">
+                    <!-- 视频或图片将在这里显示 -->
+                </div>
+                <div class="preview-info">
+                    <h2 class="preview-title"></h2>
+                    <p class="preview-description"></p>
+                    <div class="preview-details">
+                        <div class="detail">
+                            <strong>制作工具：</strong>
+                            <span class="tools"></span>
+                        </div>
+                        <div class="detail">
+                            <strong>制作时间：</strong>
+                            <span class="duration"></span>
+                        </div>
+                        <div class="detail">
+                            <strong>项目类型：</strong>
+                            <span class="type"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 个人简介区域 -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">个人简介</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>你好，我是小坏吖</h3>
+                    <p class="about-description">
+                        一名热爱摄影的创作者，专注于城市、人像和自然风光摄影。用镜头记录生活中的美好瞬间，
+                        分享独特的视角和故事。
+                    </p>
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <i class="bi bi-camera-fill"></i>
+                            <span>5年摄影经验</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="bi bi-image-fill"></i>
+                            <span>300+精修作品</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="bi bi-trophy-fill"></i>
+                            <span>10+摄影奖项</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我区域 -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <h3>邮箱</h3>
+                        <p>3934****872@qq.com</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <h3>电话</h3>
+                        <p>130****1899</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-wechat"></i>
+                        <h3>微信</h3>
+                        <p>130****1899</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-chat-dots-fill"></i>
+                        <h3>QQ</h3>
+                        <p>3934****872</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <h3>地址</h3>
+                        <p>中国·深圳</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI对话区域 -->
+    <section id="chat" class="chat-section">
+        <div class="container">
+            <h2 class="section-title">需求帮助</h2>
+            <div class="chat-content">
+                <div class="chat-intro">
+                    <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg" alt="Assistant" class="chat-bot-avatar">
+                    <h3>视频制作顾问</h3>
+                    <p>我可以为您提供以下帮助：</p>
+                    <ul class="chat-features">
+                        <li><i class="bi bi-camera-video"></i> 视频拍摄技巧</li>
+                        <li><i class="bi bi-film"></i> 剪辑制作指导</li>
+                        <li><i class="bi bi-magic"></i> 特效制作建议</li>
+                        <li><i class="bi bi-music-note-beamed"></i> 配乐音效推荐</li>
+                    </ul>
+                    <button class="start-chat-btn" onclick="document.getElementById('chatToggle').click()">
+                        咨询需求 <i class="bi bi-chat-dots"></i>
+                    </button>
+                </div>
+                <div class="message-form">
+                    <h3>给我留言</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="您的邮箱" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="主题">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="您的留言" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">发送留言</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 对话界面 -->
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-toggle" id="chatToggle">
+            <i class="bi bi-chat-dots-fill"></i>
+        </button>
+        <div class="chat-window">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg" alt="Assistant" class="ai-avatar">
+                    <span>视频制作顾问</span>
+                </div>
+                <button class="chat-minimize" id="chatMinimize">
+                    <i class="bi bi-dash-lg"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input">
+                <textarea placeholder="请描述您的需求..." id="chatInput"></textarea>
+                <button class="chat-send" id="chatSend">
+                    <i class="bi bi-send-fill"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 视频号二维码弹窗 -->
+    <div id="qrcodeModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-modal" onclick="closeQRCode()">&times;</span>
+            <div style="text-align: center;">
+                <h3 style="margin-bottom: 1rem;">扫码关注视频号</h3>
+                <img src="imgs/视频号.jpg" alt="视频号二维码" style="width: 400px; height: 400px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+        <div class="social-links">
+                <a href="https://v.douyin.com/i5DUUpFd/" target="_blank" title="抖音">
+                    <i class="bi bi-music-note-beamed"></i>
+                    <span>抖音号</span>
+                </a>
+                <a href="https://www.xiaohongshu.com/user/profile/5e498c3b000000000100a447" target="_blank" title="小红书">
+                    <i class="bi bi-book"></i>
+                    <span>小红书</span>
+                </a>
+                <a href="javascript:void(0)" onclick="showQRCode()" title="视频号">
+                    <i class="bi bi-camera-video"></i>
+                    <span>视频号</span>
+                </a>
+                <a href="https://b23.tv/lH2yAig" target="_blank" title="哔哩哔哩">
+                    <i class="bi bi-tv"></i>
+                    <span>哔哩哔哩</span>
+                </a>
+        </div>
+        <div class="footer-info">
+                <p>© 2024 小坏吖 视频剪辑教学. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 引入Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- 自定义脚本 -->
+    <script src="script.js"></script>
+    <script src="contact.js"></script>
+</body>
+</html> 
